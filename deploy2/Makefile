@@ -1,16 +1,15 @@
 build:
-	docker build -t fastapi-dev .
-
-pull:
-	docker pull worldbosskafka/fastapi-dev:latest
+	docker build -t elbowpay-dev:v0.0.1 .
 
 run:
-	docker run -d --name fastapi-dev -p 8000:8000  worldbosskafka/fastapi-dev
+	docker run -d -p 5001:5001 elbowpay-dev:v0.0.1
 
 push:
-	docker tag fastapi-dev:latest worldbosskafka/fastapi-dev:latest
-	docker push worldbosskafka/fastapi-dev:latest
+	docker tag elbowpay-dev:v0.0.1 worldbosskafka/elbowpay-dev:v0.0.1
+	docker push worldbosskafka/elbowpay-dev:v0.0.1
 
+pull:
+	docker pull worldbosskafka/elbowpay-dev:v0.0.1
 
-# docker run -p 8000:8000 fastapi-dev
-# docker run -d --name fastapi-dev -p 8000:8000 -v $(pwd)/mylogs:/app/logs fastapi-dev
+# docker run -p 5000:5000 elbowpay-dev
+# docker run -d --name elbowpay-dev -p 5000:5000 -v $(pwd)/mylogs:/app/logs elbowpay-dev
