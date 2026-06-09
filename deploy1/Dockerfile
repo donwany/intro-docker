@@ -2,8 +2,8 @@ FROM python:3.12-slim-bullseye
 
 WORKDIR /deploy
 
-# COPY . /deploy/
+RUN mkdir -p /deploy/data
+
 COPY . .
-# COPY app.py Dockerfile .
 
 CMD ["python", "app.py"]

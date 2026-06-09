@@ -12,3 +12,5 @@ push:
 running:
 	docker pull worldbosskafka/elbowpay:v0.0.2
 	docker run worldbosskafka/elbowpay:v0.0.2
+
+

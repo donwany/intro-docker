@@ -391,6 +391,8 @@ docker run myapp
 docker logs <container_id>
 
 docker exec -it <container_id> bash
+docker exec -it <container_id> sh
+
 
 docker stop <container_id>
 docker start <container_id>

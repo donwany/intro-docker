@@ -1,0 +1,29 @@
+services:
+  elbowpay:
+    container_name: elbowpay-api
+    build: .
+    ports:
+      - "5001:5001"
+
+  mysql:
+    image: mysql
+    container_name: mysql-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: school
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3307"
+
+  postgres:
+    image: postgres:17
+    container_name: postgres-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: school
+    ports:
+      - "5432:5432"
