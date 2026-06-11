@@ -5,10 +5,11 @@ services:
     ports:
       - "5001:5001"
 
+
 # mysql -u root --port 3307 --host localhost -p
   mysql:
     image: mysql:latest
-    container_name: mysql
+    container_name: mysql-db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
@@ -18,9 +19,10 @@ services:
     ports:
       - "3307:3307"
 
+
 # psql -h localhost -p 5432 -U root -d mydatabase
   postgres:
-    image: postgres:17
+    image: postgres:latest
     container_name: postgres-db
     restart: unless-stopped
     environment:
@@ -30,7 +32,6 @@ services:
     ports:
       - "5432:5432"
 
-# http://localhost:8081, username: admin, password: password
   mongo-express:
     image: mongo-express
     container_name: mongo-express
@@ -43,13 +44,12 @@ services:
       ME_CONFIG_BASICAUTH_PASSWORD: password
     ports:
       - "8081:8081"
-
     depends_on:
       - mongo
 
   mongo:
     image: mongo:latest
-    container_name: some-mongo
+    container_name: mongo-db
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -57,4 +57,5 @@ services:
       MONGO_INITDB_DATABASE: elbowpay
     ports:
       - "27017:27017"
+
 

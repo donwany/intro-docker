@@ -181,6 +181,34 @@ docker run -d -it --name elbowpay  -v $(pwd)/mydata:/deploy/data elbowpay:v0.0.2
 docker run -v $(pwd):/app python-app
 ```
 
+```bash
+docker run -d \
+  --name postgres-db \
+  -e POSTGRES_USER=root \
+  -e POSTGRES_PASSWORD=password \
+  -e POSTGRES_DB=mydatabase \
+  -v postgres_data:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  postgres:17
+
+
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
+```
+
+
+
 ## Student Exercise
 - Create a volume named `student-data`.
 - Run an Ubuntu container and mount the volume at `/school`.
