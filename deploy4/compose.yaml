@@ -1,0 +1,6 @@
+services:
+  api:
+    container_name: elbow-pay
+    build: .
+    ports:
+      - "1957:1957"
