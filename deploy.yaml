@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2026-06-19T01:07:05Z"
+  generation: 3
+  labels:
+    app: elbowpay
+  name: elbowpay
+  namespace: prod
+  resourceVersion: "6862"
+  uid: 0d5a7f48-ac05-4008-9da5-58037210e3a9
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 5
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: elbowpay
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: elbowpay
+    spec:
+      containers:
+      - image: worldbosskafka/elbowpay:v0.0.4
+        imagePullPolicy: IfNotPresent
+        name: elbowpay
+        ports:
+        - containerPort: 1957
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 5
+  conditions:
+  - lastTransitionTime: "2026-06-19T01:07:05Z"
+    lastUpdateTime: "2026-06-19T01:07:10Z"
+    message: ReplicaSet "elbowpay-5fdb8874bd" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2026-06-19T01:08:39Z"
+    lastUpdateTime: "2026-06-19T01:08:39Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  observedGeneration: 3
+  readyReplicas: 5
+  replicas: 5
+  updatedReplicas: 5
