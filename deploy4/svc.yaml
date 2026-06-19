@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2026-06-17T06:18:38Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: elbowpay
+  name: elbowpay
+  namespace: prod
+  resourceVersion: "3662"
+  uid: e7042d0a-3db1-4cab-bbe7-2b3fad47fac6
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.100.164.126
+  clusterIPs:
+  - 10.100.164.126
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31666
+    port: 1957
+    protocol: TCP
+    targetPort: 1957
+  selector:
+    app: elbowpay
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - hostname: ae7042d0a3db14cabbbe72b3fad47fac-1070529224.us-east-1.elb.amazonaws.com

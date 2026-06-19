@@ -158,3 +158,108 @@ Kubernetes Cluster
 │     ├── payment-service
 
 ```
+
+## Service
+- A `Service` in Kubernetes provides a stable way to access a set of Pods.
+- The main problem it solves is that Pods are `temporary`:
+  - Pods can be `created` and `destroyed`.
+  - Pod IP addresses change.
+  - Applications need a `consistent` way to `communicate`.
+
+A Service gives Pods a `stable IP address` and `DNS name`.
+
+### Without a service
+```
+Client
+   |
+   v
+Pod A (10.1.1.2)
+
+# if a pod crashes
+
+Client
+   |
+   v
+Pod B (10.1.1.8)
+```
+
+### With service
+- The `Service IP stays the same` while Pods come and go.
+```
+Client
+   |
+   v
+Service (10.96.0.10)
+   |
+   +----> Pod A
+   |
+   +----> Pod B
+   |
+   +----> Pod C
+```
+
+## Types of Services
+- There are `3` common Service types.
+
+### ClusterIP (Default)
+  - Internal communication only.
+- Use for:
+   - Microservices
+   - Internal APIs
+   - Database access
+```
+Frontend Pod
+      |
+      v
+Backend Service
+      |
+      v
+Backend Pods
+```
+
+### NodePort
+  - Exposes the application on every node.
+- Use for:
+  - Learning Kubernetes
+  - Local testing
+```
+Browser
+   |
+   v
+Node:30080
+   |
+   v
+Service
+   |
+   v
+Pods
+```
+
+### LoadBalancer
+  - Creates a cloud load balancer.
+- Use for:
+  - Production deployments
+  - Public APIs
+  - Common in: AWS EKS, Azure AKS, Google GKE
+```
+Internet
+    |
+    v
+Load Balancer
+    |
+    v
+Service
+    |
+    v
+Pods
+```
+
+## Deployment vs. Service
+| Deployment           | Service                |
+| -------------------- | ---------------------- |
+| Creates Pods         | Exposes Pods           |
+| Manages replicas     | Provides stable access |
+| Handles scaling      | Handles networking     |
+| Replaces failed Pods | Load balances traffic  |
+
+Customers talk to the reception desk (Service), and the desk routes requests to available workers (Pods).
