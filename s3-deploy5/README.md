@@ -1,4 +1,4 @@
-## What is Amazon S3?
+## What is Amazon S3 CLI?
 Amazon Web Services provides Amazon S3 (Simple Storage Service), an object storage service used to store files such as:
 
 - Images
