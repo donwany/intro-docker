@@ -8,7 +8,7 @@ Amazon Web Services provides Amazon S3 (Simple Storage Service), an object stora
 - Application data
 - Logs
 
-
+## Key Concepts
 | Term   | Description                                |
 | ------ | ------------------------------------------ |
 | Bucket | A container for storing objects            |
@@ -16,7 +16,7 @@ Amazon Web Services provides Amazon S3 (Simple Storage Service), an object stora
 | Key    | Unique name of an object                   |
 | Region | Physical AWS location where bucket resides |
 
-
+## Useful S3 Commands
 | Command     | Purpose                 |
 | ----------- | ----------------------- |
 | aws s3 ls   | List buckets            |
@@ -71,11 +71,11 @@ aws s3 rm s3://student-bucket-001/hello.txt
 aws s3 rm s3://student-bucket-001/demo --recursive
 
 # Lab 9: Make a File Public
-aws s3 cp image.jpg s3://student-bucket-001/
+aws s3 cp chapter9.jpg s3://student-bucket-001/
 # grant public access
 aws s3api put-object-acl --bucket student-bucket-001 --key image.jpg --acl public-read
 # get public url
-https://student-bucket-001.s3.amazonaws.com/image.jpg
+https://student-bucket-001.s3.amazonaws.com/chapter9.jpg
 
 # Clean Up Resources
 # Delete bucket contents
